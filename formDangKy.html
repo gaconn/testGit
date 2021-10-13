@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="formDangKy.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="form " id="form1">
+        <form action="" method="POST" class="form-logon ">
+            <h3 class="form-heading">Thành viên đăng ký</h3>
+            <p class="form-slogan">Cùng nhau học lập trình miễn phí tại F8 ❤</p>
+            <div class="form-input ">
+                <label for="fullName" class="form-input__label">Tên đầy đủ</label>
+                <input id="fullName" class="form-input__input" type="text" name="fullName" placeholder="VD: Đồng Quân">
+                <span class="form-input__message"></span>
+            </div>
+            <div class="form-input">
+                <label for="Email" class="form-input__label">Email</label>
+                <input id="Email" class="form-input__input" type="text" name="Email" placeholder="VD: Quan12xz@gmail.com">
+                <span class="form-input__message"></span>
+            </div>
+            <div class="form-input">
+                <label for="password" class="form-input__label">Mật khẩu</label>
+                <input id="password" class="form-input__input" type="password" name="password" placeholder="Nhập mật khẩu">
+                <span class="form-input__message"></span>
+            </div>
+            <div class="form-input">
+                <label for="rewritePassword" class="form-input__label">Nhập lại mật khẩu</label>
+                <input id="rewritePassword" class="form-input__input" type="password" name="rewritePassword" placeholder="Nhập lại mật khẩu">
+                <span class="form-input__message"></span>
+            </div>
+            <div class="form-input">
+                <label  class="form-input__label">Giới tính</label>
+                <div class="form-input__gender">
+                    <div>
+                        <input  type="radio" name="gender" value="male"> Nam
+                    </div>
+                    <div>
+                        <input  type="radio" name="gender" value="female"> Nữ
+                    </div>
+                    <div>
+                        <input  type="radio" name="gender" value="other"> Khác
+                    </div>
+                </div>
+                <span class="form-input__message"></span>
+            </div>
+            <div class="form-input">
+                <label for="city" class="form-input__label">Nơi ở hiện tại</label>
+                <select name="city" id="city">
+                    <option value="">--Tỉnh/TP--</option>
+                    <option value="hni">Hà Nội</option>
+                    <option value="hcm">TP.HCM</option>
+                    <option value="daknong">Đắk Nông</option>
+                </select>
+                <span class="form-input__message"></span>
+            </div>
+            <div class="form-input">
+                <label for="language" class="form-input__label">Ngôn ngữ</label>
+                <input type="checkbox" name="language" value="en">English
+                <input type="checkbox" name="language" value="vi">Tiếng việt
+                <input type="checkbox" name="language" value="Japanese">Japanese
+                <span class="form-input__message"></span>
+            </div>
+            <input type="submit" value="Đăng ký" class="form-logon__submit">
+        </form>
+    </div>
+    <script src="formDangKy.js"></script>
+    <script>
+         validator({
+             formTarget: '#form1',
+             nameClassRootInput: '.form-input',
+             rules: [
+                validator.isFill('#fullName','Vui lòng nhập tên đầy đủ của bạn '),
+                
+                validator.isFill('#Email','Vui lòng nhập email'),
+                validator.isEmail('#Email'),
+                validator.isFill('#password','Vui lòng nhập mật khẩu'),
+                validator.isPassword('#password'),
+                validator.isFill('#rewritePassword','Vui lòng nhập lại mật khẩu'),
+                validator.isMatchPassword('#rewritePassword', function(){
+                    return document.querySelector('#form1 #password').value;
+                },'Mật khẩu nhập lại không khớp nhau'),
+                validator.isFill('input[name=gender]'),
+                validator.isFill('#city')
+             ],
+            onSubmit: function(data){
+                console.log(data);
+            }
+         })
+    </script>
+
+</body>
+</html>
